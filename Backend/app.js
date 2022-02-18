@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const sqlite3 = require("sqlite3").verbose();
 
 const app = express();
 
