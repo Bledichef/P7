@@ -1,9 +1,18 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
-const sqlite3 = require("sqlite3").verbose();
+const { Sequelize } = require("sequelize");
+
+const path = require("path");
+
+const userRoutes = require("./routes/user");
 
 const app = express();
+
+const sequelize = new Sequelize("test", "root", "1234", {
+  host: "localhost",
+  dialect: "mysql",
+});
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -23,5 +32,7 @@ app.use(express.json());
 app.use(helmet());
 
 app.use(cors());
+
+app.use("/api/user", userRoutes);
 
 module.exports = app;
