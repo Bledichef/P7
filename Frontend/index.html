@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <title>Test app Vue</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Hello World</h1>
+      <h2>{{ message }}</h2>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script>
+      const app = new Vue({
+        el: "#app",
+        data: {
+          message: "Bonjour",
+        },
+      });
+    </script>
+  </body>
+</html>
