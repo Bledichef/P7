@@ -18,20 +18,16 @@ exports.signUp = (req, res) => {
       .hash(req.body.password, 10)
       .then((hash) => {
         model.User.create({
-          firstname: req.body.firstname,
-          lastname: req.body.lastname,
           email: req.body.email,
+          username: req.body.firstname,
           password: hash,
-          job: req.body.job,
+          bio: req.body.job,
           isadmin: req.body.isadmin,
         })
           .then(() =>
-            res
-              .status(201)
-              .json({
-                message:
-                  "Utilisateur créé et enregistré dans la base de données",
-              })
+            res.status(201).json({
+              message: "Utilisateur créé et enregistré dans la base de données",
+            })
           )
           .catch((error) => {
             console.log(error);
@@ -56,11 +52,9 @@ exports.login = (req, res) => {
     .then((user) => {
       //si l'user n'existe pas dans la db
       if (!user) {
-        return res
-          .status(400)
-          .json({
-            error: "Utilisateur inexistant et/ou Mot de passe incorrect",
-          });
+        return res.status(400).json({
+          error: "Utilisateur inexistant et/ou Mot de passe incorrect",
+        });
         //si user existe = on compare mot de passe enregistré dans db avec cet user, et celui de la requete
       } else {
         bcrypt
@@ -68,11 +62,9 @@ exports.login = (req, res) => {
           .then((verifyPassword) => {
             //si verif KO
             if (!verifyPassword) {
-              return res
-                .status(400)
-                .json({
-                  error: "Utilisateur inexistant et/ou Mot de passe incorrect",
-                });
+              return res.status(400).json({
+                error: "Utilisateur inexistant et/ou Mot de passe incorrect",
+              });
               //si vérif ok -> connecté -> on retourne l'userId + isadmin + le token (qui contient userId, la clé, l'expiration)
             } else {
               res.status(200).json({
@@ -186,12 +178,10 @@ exports.deleteProfile = (req, res) => {
           .then(() => res.status(200).json({ message: "Utilisateur supprimé" }))
           .catch((error) => res.status(403).json({ error }));
       } else {
-        res
-          .status(404)
-          .json({
-            message:
-              "Vous n'avez pas l'autorisation de supprimer un autre utilisateur",
-          });
+        res.status(404).json({
+          message:
+            "Vous n'avez pas l'autorisation de supprimer un autre utilisateur",
+        });
       }
     })
     .catch((error) => {
@@ -286,11 +276,9 @@ exports.updateProfileByUser = (req, res) => {
                   })
                   .catch((error) => res.status(500).json({ error }));
               } else {
-                return res
-                  .status(404)
-                  .json({
-                    message: "Le format de l'adresse mail est invalide",
-                  });
+                return res.status(404).json({
+                  message: "Le format de l'adresse mail est invalide",
+                });
               }
             }
           } else {

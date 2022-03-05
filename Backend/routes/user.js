@@ -10,7 +10,7 @@ const limiter = require("../middleware/limiter");
 
 const router = express.Router();
 
-router.post("/signup", password, userController.signUp);
+router.post("/signup", userController.signUp);
 router.post("/login", limiter.loginLimiter, userController.login);
 router.get(
   "/full/:userId",
