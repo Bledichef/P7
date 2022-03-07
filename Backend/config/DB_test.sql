@@ -2,7 +2,7 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: mysql-pluyaud.alwaysdata.net
+-- Host: mysql-database_development.alwaysdata.net
 -- Generation Time: Jan 24, 2022 at 06:18 PM
 -- Server version: 10.6.5-MariaDB
 -- PHP Version: 7.4.19

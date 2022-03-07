@@ -18,7 +18,7 @@ router.get(
   limiter.globalLimiter,
   userController.getOneProfileFull
 );
-router.get("/", auth, limiter.globalLimiter, userController.adminGetAllProfile);
+router.get("/", limiter.globalLimiter, userController.adminGetAllProfile);
 router.put(
   "/:userId",
   auth,
